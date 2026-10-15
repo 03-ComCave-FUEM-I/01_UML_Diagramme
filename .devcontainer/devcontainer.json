@@ -1,0 +1,15 @@
+{
+  "name": "UML Modul",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "jebbs.plantuml"
+      ],
+      "settings": {
+        "plantuml.render": "PlantUMLServer",
+        "plantuml.server": "https://www.plantuml.com/plantuml",
+        "plantuml.previewAutoUpdate": true
+      }
+    }
+  }
+}
