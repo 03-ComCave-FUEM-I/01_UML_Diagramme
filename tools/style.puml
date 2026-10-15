@@ -1,0 +1,8 @@
+@startuml style
+
+skinparam {
+    classAttributeIconSize 0
+    style strictuml
+}
+
+@enduml
