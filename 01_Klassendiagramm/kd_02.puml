@@ -13,13 +13,15 @@ class Lieferadresse {
 class Bestellung {
     - bestellNr: String
     - bestellDatum: Date
-    - gesamtbetrag: doubl
+    - gesamtbetrag: double
     + Bestellung(String, Lieferadresse)
     + getVersandziel(): Lieferadresse
     + setVersandziel(Lieferadresse): void
     + abschliessen(): void
 }
 
-' Unidirektional: Bestellung kennt ihre Adresse, die Adresse kennt keine Bestellungen
-Bestellung "*" --> "1" Lieferadresse : wird geliefert an >
+' Unidirektional: Bestellung kennt ihre Adresse, die Adresse 
+'kennt keine Bestellungen
+Bestellung "* " --> "1 " Lieferadresse : wird geliefert an >
+
 @enduml
