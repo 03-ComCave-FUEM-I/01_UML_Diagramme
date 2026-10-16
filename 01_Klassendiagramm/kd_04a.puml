@@ -1,0 +1,33 @@
+@startuml aggregation_fahrrad
+!include tools/style.puml
+
+class Fahrrad {
+    - rahmenNummer: String
+    - modell: String
+    + montiereKlingel(Fahrradklingel): void
+    + wechsleRad(int, Laufrad): void
+    + fahre(double): void
+}
+
+class Fahrradklingel {
+    - hersteller: String
+    - material: String
+    - lautstaerkeDb: int
+    + klingle(): void
+}
+
+class Laufrad {
+    - zollGroesse: int
+    - reifenBreiteMm: int
+    - reifendruckBar: double
+    + aufpumpen(double): void
+    + getReifendruck(): double
+}
+
+' Aggregation 1: Klingel (optional: 0..1)
+Fahrrad "1" o-- "0..1" Fahrradklingel : ist ausgestattet mit >
+
+' Aggregation 2: Laufräder (genau 2 Stück: Vorderrad und Hinterrad)
+Fahrrad "1" o-- "2  " Laufrad : besitzt >
+
+@enduml

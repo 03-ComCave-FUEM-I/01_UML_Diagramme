@@ -1,0 +1,38 @@
+@startuml beziehungen-kombi
+
+!include tools/style.puml
+
+class Bank {
+    - bic: String
+    - name: String
+    + eroeffneKonto(Kunde): Konto
+    + schliesseFiliale(): void
+}
+
+class Kunde {
+    - kundenNr: String
+    - name: String
+}
+
+class Konto {
+    - iban: String
+    - saldo: double
+    + buchen(double, String): void
+}
+
+class Buchungssatz {
+    - timestamp: DateTime
+    - betrag: double
+    - verwendungszweck: String
+}
+
+' 1. AGGREGATION: Die Bank verwaltet Konten (weiße Raute an Bank)
+Bank "1" o-- "*" Konto : verwaltet >
+
+' 2. ASSOZIATION: Ein Kunde besitzt/nutzt Konten
+Kunde "1" --> "1..*" Konto : besitzt >
+
+' 3. KOMPOSITION: Ein Konto besteht aus festen Buchungseinträgen (schwarze Raute an Konto)
+Konto "1" *-- "*" Buchungssatz : besteht aus >
+
+@enduml

@@ -1,0 +1,22 @@
+@startuml assoziation_bidirektional
+!include tools/style.puml
+
+class Dozent {
+    - personalNr: int
+    - name: String
+    + addKurs(Kurs): void
+}
+
+class Kurs {
+    - kursId: String
+    - titel: String
+    + setDozent(Dozent): void
+}
+
+' Ungerichtete / bidirektionale Assoziation: Beide kennen sich
+Dozent "1" -- "1..*" Kurs :"  leitet / wird geleitet von" 
+
+@enduml
+
+' Ein Dozent leitet mehrere Kurse, und ein Kurs kennt seinen leitenden Dozenten. 
+' Beide Klassen stehen gleichberechtigt in einer Wechselbeziehung.

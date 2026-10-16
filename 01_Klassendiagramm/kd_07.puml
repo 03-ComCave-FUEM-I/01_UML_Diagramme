@@ -1,0 +1,56 @@
+@startuml vererbung_fahrzeug
+!include tools/style.puml
+
+abstract class Fahrzeug {
+    - fin: String
+    # marke: String
+    # kilometerstand: int
+    # geschwindigkeit: double
+
+    + Fahrzeug(String, String)
+    + beschleunigen(double): void
+    + bremsen(double): void
+    + {abstract} berechneReichweite(): double
+    + getFin(): String
+}
+
+class Pkw {
+    - anzahlTueren: int
+    - tankVolumenLiter: double
+    - kraftstoffVorratLiter: double
+
+    + Pkw(String, String, int, double)
+    + tanken(double): void
+    + berechneReichweite(): double
+}
+
+class ElektroPkw {
+    - batterieKapazitaetKWh: double
+    - ladestandKWh: double
+
+    + ElektroPkw(String, String, double)
+    + laden(double): void
+    + berechneReichweite(): double
+}
+
+' Vererbung (Generalisierung): Dreiecksspitze zeigt zur Superklasse
+Fahrzeug <|-- Pkw
+Fahrzeug <|-- ElektroPkw
+
+@enduml
+
+Hier ist der Klassiker zur Vererbung (Generalisierung) 
+mit einer Oberklasse Fahrzeug und den abgeleiteten Klassen Pkw und ElektroPkw:
+
+# (protected) für Attribute, auf die abgeleitete Klassen 
+direkt zugreifen dürfen (z. B. kilometerstand oder geschwindigkeit).
+
+- (private) für strikt gekapselte Daten der Basisklasse 
+(z. B. fin / Fahrgestellnummer).
+
+{abstract} für Methoden oder Klassen, die erst in den Unterklassen konkret 
+implementiert werden.
+
+<|-- als Standard-Vererbungspfeil 
+(die geschlossene, leere Dreiecksspitze zeigt immer nach oben zur Superklasse).
+

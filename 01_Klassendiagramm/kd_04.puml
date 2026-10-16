@@ -1,0 +1,23 @@
+@startuml aggregation
+!include tools/style.puml
+
+class Abteilung {
+    - abteilungsKuerzel: String
+    - bezeichnung: String
+    + addMitarbeiter(Mitarbeiter): void
+    + removeMitarbeiter(Mitarbeiter): void
+}
+
+class Mitarbeiter {
+    - mitarbeiterId: int
+    - nachname: String
+    + getGehalt(): double
+}
+
+' Aggregation: Abteilung hat Mitarbeiter (weiße Raute am Ganzen)
+Abteilung "1" o-- "1..*" Mitarbeiter : besteht aus >
+
+@enduml
+
+' Eine Abteilung besteht aus Mitarbeitern. Wird die Abteilung aufgelöst oder umstrukturiert, 
+' existieren die Mitarbeiter als Angestellte im Unternehmen unabhängig weiter.

@@ -1,0 +1,80 @@
+@startuml kd
+
+!include tools/style.puml
+
+class KlasseA {
+ 
+}
+
+class KlasseB {
+ 
+}
+
+' ========================================================
+' BEZIEHUNGSGESTALTUNG (Auskommentierter Spickzettel)
+' Einfach die gewünschte Zeile einkommentieren:
+' ========================================================
+
+' allgemein, ungerichtet
+' KlasseA -- KlasseB 
+
+' Richtung a - b
+' KlasseA --> KlasseB
+
+' Richtung b - a
+' KlasseA <-- KlasseB
+
+' Richtung a <-> b
+' KlasseA <--> KlasseB
+
+  '===================
+  'Beschriftung
+  '====================
+
+' allgemein, ungerichtet
+' KlasseA -- KlasseB: " kennen sich"
+
+' Richtung a - b
+' KlasseA --> KlasseB:" verwendet"
+
+' Richtung b - a
+' KlasseA <-- KlasseB: " hat"
+
+' Richtung a <-> b
+' KlasseA <--> KlasseB " kommunizieren" ??
+
+
+
+' --- 1. ASSOZIATIONEN ("nutzt / kennt") ---
+' Unidirektional (KlasseA kennt KlasseB, KlasseB kennt KlasseA nicht):
+'  KlasseA "1 " --> "0..* " KlasseB : nutzt >
+
+' Bidirektional gerichtet (beide navigierbar):
+' KlasseA "1 " <--> "1..* " KlasseB : " interagieren"
+
+' Ungerichtet (reine Verbindung ohne Navigationsrichtung):
+' KlasseA "1" -- "*" KlasseB : steht in Verbindung mit
+
+
+' --- 2. AGGREGATION ("hat ein / sammelt" - lose Teil-Ganzes-Beziehung) ---
+' Unidirektional (Ganzes KlasseA kennt Teil KlasseB; KlasseB überlebt ohne KlasseA):
+' KlasseA "1" o--> "*" KlasseB : sammelt >
+
+' Ungerichtet / Standard (Ganzes KlasseA hat Teil KlasseB):
+' KlasseA "1" o-- "*" KlasseB : besteht lose aus
+
+' --- 3. KOMPOSITION ("besteht aus" - strikte Existenzabhängigkeit) ---
+' Unidirektional (Ganzes KlasseA besitzt KlasseB exklusiv; KlasseB stirbt mit KlasseA):
+' KlasseA "1" *--> "1..*" KlasseB : erzeugt und besitzt >
+
+' Ungerichtet / Standard (Ganzes KlasseA besteht fest aus KlasseB):
+' KlasseA "1" *-- "1..*" KlasseB : besteht fest aus
+
+' --- 4. ZUSÄTZLICH: VERERBUNG & ABHÄNGIGKEIT ---
+' Generalisierung / Vererbung (KlasseB erbt von KlasseA):
+' KlasseA <|-- KlasseB
+
+' Abhängigkeit / Dependency (KlasseA benutzt KlasseB z. B. nur als Methodenparameter):
+' KlasseA ..> KlasseB : <<use>>
+
+@enduml

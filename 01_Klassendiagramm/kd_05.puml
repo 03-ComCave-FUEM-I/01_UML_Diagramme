@@ -1,0 +1,35 @@
+@startuml komposition
+!include tools/style.puml
+
+class Rechnung {
+    - rechnungsNr: String
+    - datum: Date
+    - gesamtBetrag: double
+    + erstellePosition(String, int, double): void
+    + berechneGesamtsumme(): double
+}
+
+class Rechnungsposition {
+    - positionsNr: int
+    - bezeichnung: String
+    - menge: int
+    - einzelpreis: double
+    + getGesamtpreis(): double
+}
+
+' Komposition: Rechnung besteht aus festen Positionen (schwarze Raute am Ganzen)
+Rechnung "1 " *-- "1..* " Rechnungsposition : " besteht aus >  "
+@enduml
+
+'========================================================================
+
+Eine Rechnung besteht aus einer oder mehreren Rechnungspositionen.
+
+Existenzabhängigkeit: Eine einzelne Position (z. B. „3x Fachbuch UML – 59,70 €“) 
+hat isoliert ohne ihre zugehörige Rechnung keinen Sinn und darf nicht alleine 
+weiterexistieren.
+
+Lebensdauer: Wird die Rechnung storniert oder physisch aus der Datenbank gelöscht, 
+werden all ihre Positionen zwingend mitgelöscht.
+
+Symbol: Ausgefüllte/schwarze Raute (*--) beim Ganzen (Rechnung).

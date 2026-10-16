@@ -1,0 +1,25 @@
+@startuml assoziation_bestellung_adresse
+
+!include tools/style.puml
+
+class Lieferadresse {
+    - strasse: String
+    - hausnummer: String
+    - plz: String
+    - ort: String
+    + formatieren(): String
+}
+
+class Bestellung {
+    - bestellNr: String
+    - bestellDatum: Date
+    - gesamtbetrag: doubl
+    + Bestellung(String, Lieferadresse)
+    + getVersandziel(): Lieferadresse
+    + setVersandziel(Lieferadresse): void
+    + abschliessen(): void
+}
+
+' Unidirektional: Bestellung kennt ihre Adresse, die Adresse kennt keine Bestellungen
+Bestellung "*" --> "1" Lieferadresse : wird geliefert an >
+@enduml
